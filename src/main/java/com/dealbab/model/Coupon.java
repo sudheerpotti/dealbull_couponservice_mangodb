@@ -1,5 +1,6 @@
 package com.dealbab.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,7 +26,7 @@ public class Coupon {
 	    private String storeName;
 	    private String storeImageUrl;
 	    private String storeRedirectUrl;
-	    private List<String> categoryies = null;
+	    private Collection<Category> categories;
 	    private List<String> region = null;
 	    private String rating;
 		public Integer getId() {
@@ -136,11 +137,11 @@ public class Coupon {
 		public void setStoreRedirectUrl(String storeRedirectUrl) {
 			this.storeRedirectUrl = storeRedirectUrl;
 		}
-		public List<String> getCategoryies() {
-			return categoryies;
+		public Collection<Category> getCategories() {
+			return categories;
 		}
-		public void setCategoryies(List<String> categoryies) {
-			this.categoryies = categoryies;
+		public void setCategories(Collection<Category> categories) {
+			this.categories = categories;
 		}
 		public List<String> getRegion() {
 			return region;
@@ -161,9 +162,10 @@ public class Coupon {
 					+ pid + ", sid=" + sid + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate
 					+ ", productTitle=" + productTitle + ", basePrice=" + basePrice + ", discountPrice=" + discountPrice
 					+ ", discountPercentage=" + discountPercentage + ", storeName=" + storeName + ", storeImageUrl="
-					+ storeImageUrl + ", storeRedirectUrl=" + storeRedirectUrl + ", categoryies=" + categoryies
+					+ storeImageUrl + ", storeRedirectUrl=" + storeRedirectUrl + ", categories=" + categories
 					+ ", region=" + region + ", rating=" + rating + "]";
 		}
+		
 
 
 }
