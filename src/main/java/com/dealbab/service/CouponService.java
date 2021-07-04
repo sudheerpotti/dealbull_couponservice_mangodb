@@ -25,20 +25,20 @@ public Coupon createCoupon(Coupon coupon) {
 		 return couponRepository.save(coupon);
 		
 	}
-public Optional<Coupon> checkCouponById(Integer id) {
+public Optional<Coupon> checkCouponById(Integer sid) {
 	
-	return couponRepository.findById(id);
+	return couponRepository.findById(sid);
 }
 
 public List<Coupon> getAllCoupon() {
 	
 	return couponRepository.findAll();
 }
-public void deleteCoupon(Integer id) {
+/*public void deleteCoupon(Integer id) {
 	
 	couponRepository.deleteById(id);
 	
-}
+}*/
 public Coupon findById(Integer id) {
 	for(Coupon coupon : coupon){
         if(coupon.getId().equals(id)){
@@ -56,8 +56,10 @@ public boolean isCouponIdExist(Coupon coupon) {
 	return couponRepository.findById(id);
 }
 */
+public Optional<Coupon> checkCouponBySid(Integer sid) {
 
-
+	return couponRepository.findById(sid);
+}
 
 
 }
