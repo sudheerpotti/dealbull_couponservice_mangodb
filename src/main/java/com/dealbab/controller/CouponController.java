@@ -1,4 +1,5 @@
 package com.dealbab.controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dealbab.model.Category;
 import com.dealbab.model.Coupon;
 import com.dealbab.repository.CouponRepository;
 import com.dealbab.service.CouponService;
@@ -59,19 +61,33 @@ public class CouponController {
 	}*/
 	
 		@GetMapping(value="/coupon")
-		public List<Coupon> getAllCoupon(@RequestParam(value="storeId",required = false)String storeId/*,
-				@RequestParam(value="categoryId",required = false)String categoryId*/)
+		public List<Coupon> getAllCoupon(@RequestParam(value="storeId",required = false)String storeId,
+				@RequestParam(value="categoryId",required = false)String categoryId)
 	 {
-		
+			 List<Coupon> couponList1= new ArrayList<Coupon>() ;
 		  List<Coupon> couponList= couponService.getAllCoupon();
 		  if(storeId!=null && !storeId.isEmpty()) {
 			
 			  return couponList.stream().filter(c->c.getSid().equalsIgnoreCase(storeId)).collect(Collectors.toList()); 
 		  }
-		 /* else if(categoryId!=null && !categoryId.isEmpty()) {
-			
-			  return couponList.stream().filter(c->c.getCid().equalsIgnoreCase(categoryId)).collect(Collectors.toList()); 
-		  }*/
+		  else if(categoryId!=null && !categoryId.isEmpty()) {
+			  
+			  for(Coupon coupon:couponList) {
+				  if(coupon!=null && coupon.getCategories()!=null) {
+				for(Category category:coupon.getCategories()) {
+					
+					if(category!=null) {
+					
+					if(category.getCid()!=null && category.getCid() == Integer.valueOf(categoryId)) {
+						 couponList1.add(coupon);
+					}
+					}	
+					}
+				  }
+			  }
+			return couponList1;
+			 // return couponList.stream().filter(c->c.getCid().equalsIgnoreCase(categoryId)).collect(Collectors.toList()); 
+		  }
 		  else {
 			  return couponList;
 		  }

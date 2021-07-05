@@ -26,7 +26,14 @@ public class Coupon {
 	    private String storeName;
 	    private String storeImageUrl;
 	    private String storeRedirectUrl;
-	    private Collection<Category> categories;
+	    private String categoryId;
+	    public String getCategoryId() {
+			return categoryId;
+		}
+		public void setCategoryId(String categoryId) {
+			this.categoryId = categoryId;
+		}
+		private Collection<Category> categories;
 	    private List<String> region = null;
 	    private String rating;
 		public Integer getId() {
@@ -162,9 +169,12 @@ public class Coupon {
 					+ pid + ", sid=" + sid + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate
 					+ ", productTitle=" + productTitle + ", basePrice=" + basePrice + ", discountPrice=" + discountPrice
 					+ ", discountPercentage=" + discountPercentage + ", storeName=" + storeName + ", storeImageUrl="
-					+ storeImageUrl + ", storeRedirectUrl=" + storeRedirectUrl + ", categories=" + categories
-					+ ", region=" + region + ", rating=" + rating + "]";
+					+ storeImageUrl + ", storeRedirectUrl=" + storeRedirectUrl + ", categoryId=" + categoryId
+					+ ", categories=" + categories + ", region=" + region + ", rating=" + rating + "]";
 		}
+		
+		
+		
 		
 
 
